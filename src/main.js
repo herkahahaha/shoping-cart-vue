@@ -1,4 +1,8 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import { VuelidatePlugin } from '@vuelidate/core';
+import App from './App.vue';
+import 'normalize.css';
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.use(VuelidatePlugin);
+app.mount('#app');
