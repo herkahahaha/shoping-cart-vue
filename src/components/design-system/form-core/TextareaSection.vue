@@ -38,8 +38,8 @@ export default {
       default: 'Label',
     },
     value: {
-      type: Boolean,
-      default: false,
+      type: String,
+      default: '',
     },
     invalid: {
       type: Boolean,
