@@ -29,7 +29,7 @@ export default {
       default: () => [],
     },
     selectedValue: {
-      type: String,
+      type: [String, Object],
       default: '',
     },
   },

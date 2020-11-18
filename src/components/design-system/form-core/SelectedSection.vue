@@ -2,13 +2,15 @@
   <div :class="['select__item', { select__item__selected: selected }]">
     <div class="select__item-p">
       <div
-        class="select__item__name"
-        :class="{ 'select__item__name__no-value': !option.value }"
+        :class="[
+          'select__item__name',
+          { 'select__item__name__no-value': !option.value },
+        ]"
       >
         {{ option.name }}
       </div>
       <div v-if="option.value" class="select__item__value">
-        {{ option.value }} <span v-if="option.name === 'e-Wallet'"> left</span>
+        {{ option.value }} <span v-if="option.name === 'e-Wallet'"> </span>
       </div>
       <span v-if="selected" class="select__item__icon material-icons"
         >check</span
@@ -20,7 +22,17 @@
 <script>
 export default {
   name: 'SelectedSection',
-  props: ['option', 'selected'],
+  // props: ['option', 'selected'],
+  props: {
+    option: {
+      type: [String, Object],
+      default: () => {},
+    },
+    selected: {
+      type: Boolean,
+      default: false,
+    },
+  },
 };
 </script>
 

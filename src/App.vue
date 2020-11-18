@@ -12,6 +12,7 @@
             <component
               :is="nextSteps"
               :reset="resetState"
+              :form="form"
               ref="nextSteps"
               @update="fetchData"
             />
@@ -22,7 +23,7 @@
           class="section__summary"
           :isLastStep="lastStep"
           :handleClick="toTheNext"
-          :checkoutForm="form"
+          :form="form"
           :allowNext="!!goNext"
           :status="currentState"
         />
