@@ -19,32 +19,38 @@
 <script>
 export default {
   name: 'progress',
-  props: ['status', 'actived'],
+  // props: ['status', 'actived'],
+  props: {
+    status: {
+      type: Array,
+      default: () => [],
+    },
+    actived: {
+      type: [Number, String],
+      default: '',
+    },
+  },
 };
 </script>
 
 <style lang='stylus'>
 @import '../../styles/theme.styl';
+@import '../../styles/flexbox.styl';
 
 .progress {
-  display: flex;
-  justify-content: center;
+  flexboxCenter(center);
+  margin: 0 auto;
   background-color: $lightPink;
   color: $orangePrimary;
   border-radius: 35px;
   padding: 28px;
   transform: translateY(35px);
-  margin: 0 auto;
 
   &-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flexboxCenter(center);
 
     &__id {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      flexboxCenter(center);
       width: 30px;
       height: 30px;
       background: rgba(253, 140, 63, 0.2);

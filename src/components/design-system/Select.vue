@@ -22,7 +22,17 @@ export default {
     SelectedSection,
     RowSection,
   },
-  props: ['options', 'selectedValue'],
+  // props: ['options', 'selectedValue'],
+  props: {
+    options: {
+      type: Array,
+      default: () => [],
+    },
+    selectedValue: {
+      type: String,
+      default: '',
+    },
+  },
   methods: {},
 };
 </script>

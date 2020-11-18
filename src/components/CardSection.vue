@@ -6,9 +6,9 @@
           href="/"
           class="card-action"
           @click="handleClick"
-          :disabled="state < 2"
+          :disabled="state.length < 2"
         >
-          ← back to {{ state === 2 ? 'delivery' : 'cart' }}
+          ← back to {{ state === 1 ? 'cart' : 'delivery' }}
         </button>
       </div>
       <div class="card-content">
@@ -21,12 +21,23 @@
 <script>
 export default {
   name: 'CardSection',
-  props: ['state', 'handleClick'],
+  // props: ['state', 'handleClick'],
+  props: {
+    state: {
+      type: Number,
+      default: NaN,
+    },
+    handleClick: {
+      type: Function,
+      default: () => {},
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
 @import '../styles/theme.styl';
+@import '../styles/flexbox.styl';
 
 .basic-card {
   background-color: $light;
@@ -42,8 +53,7 @@ export default {
       width: 100%;
 
       .card-action {
-        display: flex;
-        align-items: center;
+        flexboxCenter(center);
         font-size: 1.25rem;
         opacity: 0.6;
         margin: 10px 0 0;

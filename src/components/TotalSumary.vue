@@ -102,6 +102,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../styles/theme.styl';
+@import '../styles/flexbox.styl';
 
 .summary {
   text-align: left;
@@ -159,7 +160,7 @@ export default {
     font-size: 14px;
 
     &__row {
-      justify-content: space-between;
+      justifyContent(space-between);
       margin-bottom: 12px;
     }
 
@@ -178,7 +179,7 @@ export default {
   }
 
   &__total {
-    justify-content: space-between;
+    justifyContent(space-between);
     margin-top: 24px;
     font-weight: bold;
     color: $orangeOrigin;
@@ -187,21 +188,7 @@ export default {
   }
 
   &__btn {
-    background: $orangePrimary;
-    padding: 20px;
-    color: $light;
-    outline: none;
-    width: 100%;
-    border: none;
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &:hover {
-      opacity: 0.9;
-    }
+    payBtn();
   }
 }
 </style>

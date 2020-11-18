@@ -30,11 +30,10 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../styles/theme.styl';
+@import '../styles/flexbox.styl';
 
 .finished {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flexboxCenter(center);
   min-height: 70vh;
 
   &__wrap {
@@ -59,6 +58,7 @@ export default {
   }
 
   &__btn {
+    flexboxCenter(center);
     font-weight: 500;
     font-size: 14px;
     color: $dark;
@@ -67,8 +67,6 @@ export default {
     outline: none;
     border: none;
     background: none;
-    display: flex;
-    align-items: center;
     cursor: pointer;
     transition: all 0.2s;
 

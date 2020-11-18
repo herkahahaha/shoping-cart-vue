@@ -47,7 +47,6 @@
               @model="$v.form.phone.$model = $event"
             />
             <textarea-section
-              type="text"
               maxLength="120"
               name="delivery address"
               label="Delivery Address"
@@ -177,7 +176,7 @@ export default {
             phone: this.form.dropshipper.phone,
           },
         },
-        valid: !this.$v.$invalid && getValid1 && getValid2,
+        valid: !this.$invalid && getValid1 && getValid2,
       });
     },
   },
@@ -186,11 +185,11 @@ export default {
 
 <style lang='stylus'>
 @import '../styles/theme.styl';
+@import '../styles/flexbox.styl';
 
 .delivery {
   &-section {
-    justify-content: space-between;
-    align-items: center;
+    justifyContent(space-between);
     padding: 20px;
 
     // checkbox for dropshiper

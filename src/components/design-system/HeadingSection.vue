@@ -18,22 +18,11 @@ export default {
 
 .heading {
   &__h1 {
-    font-size: 36px;
-    line-height: 44px;
-    font-weight: 500;
-    color: $orangePrimary;
-    margin-bottom: -22px;
-    margin-top: 0px;
-    text-align: left;
+    title(2.25rem);
   }
 
   &__line {
-    height: 8px;
-    min-width: 300px;
-    width: 100%;
-    background: $lightGrey;
-    border: none;
-    z-index: 12;
+    lines(300px);
   }
 }
 </style>

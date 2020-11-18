@@ -29,16 +29,50 @@
 <script>
 export default {
   name: 'InputSection',
-  props: [
-    'type',
-    'name',
-    'label',
-    'value',
-    'invalid',
-    'touched',
-    'maxLength',
-    'minLength',
-  ],
+  // props: [
+  //   'type',
+  //   'name',
+  //   'label',
+  //   'value',
+  //   'invalid',
+  //   'touched',
+  //   'maxLength',
+  //   'minLength',
+  // ],
+  props: {
+    type: {
+      type: String,
+      default: '',
+    },
+    name: {
+      type: String,
+      default: 'Name',
+    },
+    label: {
+      type: String,
+      default: 'Label',
+    },
+    value: {
+      type: String,
+      default: '',
+    },
+    invalid: {
+      type: Boolean,
+      default: false,
+    },
+    touched: {
+      type: Boolean,
+      default: false,
+    },
+    maxLength: {
+      type: Number,
+      default: NaN,
+    },
+    minLength: {
+      type: Number,
+      default: NaN,
+    },
+  },
   computed: {
     inputValue: {
       get() {
@@ -54,22 +88,27 @@ export default {
 
 <style lang="stylus">
 @import '../../../styles/theme.styl';
+@import '../../../styles/flexbox.styl';
 
 .input {
-  position: relative;
-  display: flex;
+  position: absolute;
   text-align: left;
-  align-items: flex-start;
-  flex-flow: column-reverse;
+  flexboxColomnReverse(column-reverse);
 
   &__section {
+    position: relative;
     border: 1px solid $lightGrey;
     max-width: 100%;
     cursor: text;
     padding: 25px 24px 15px 15px;
     box-sizing: border-box;
     font-size: 1rem;
-    width: 100%;
+    width: 300px;
+
+    +media-breakpoint-down($md) {
+      width: 100%;
+      max-width: 100%;
+    }
 
     &:focus {
       outline: none;
@@ -97,18 +136,17 @@ export default {
     }
 
     // animation for label
+    // anime(from, to, scale, valOpa)
     &:placeholder-shown + .input__label {
       font-size: 1rem;
       white-space: nowrap;
       overflow: hidden;
-      transform: translate(15px, 40px) scale(1.23);
-      opacity: 0;
+      anime(15px, 40px, 1.23, 0);
     }
 
     &:not(:placeholder-shown) + .input__label, &:focus + .input__label {
-      transform: translate(10px, 19px) scale(1);
+      anime(10px, 19px, 1, 1);
       cursor: pointer;
-      opacity: 1;
     }
   }
 
@@ -128,10 +166,5 @@ export default {
     transition: all 0.2s;
     touch-action: manipulation;
   }
-}
-
-::-webkit-input-placeholder {
-  opacity: 0;
-  transition: inherit;
 }
 </style>
