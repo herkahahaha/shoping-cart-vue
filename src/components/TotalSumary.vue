@@ -3,18 +3,16 @@
     <h2 class="summary__heading">Summary</h2>
     <div class="summary__count">10 items purchased</div>
 
-    <div v-if="checkoutForm.shipment" class="summary__info delivery">
+    <div v-if="form.shipment" class="summary__info delivery">
       <hr class="summary__info__line" />
       <div class="summary__info__label">Delivery estimation</div>
-      <div class="summary__info__value">
-        today by {{ checkoutForm.shipment.name }}
-      </div>
+      <div class="summary__info__value">today by {{ form.shipment.name }}</div>
     </div>
 
-    <div v-if="checkoutForm.payment" class="summary__info payment">
+    <div v-if="form.payment" class="summary__info payment">
       <hr class="summary__info__line" />
       <div class="summary__info__label">Payment method</div>
-      <div class="summary__info__value">{{ checkoutForm.payment.name }}</div>
+      <div class="summary__info__value">{{ form.payment.name }}</div>
     </div>
 
     <div class="summary__detail cost">
@@ -23,20 +21,18 @@
         <div class="cost__value">{{ currency(goodsValue) }}</div>
       </row-section>
       <row-section
-        v-if="checkoutForm.dropshipper && checkoutForm.dropshipper.name"
+        v-if="form.dropshipper && form.dropshipper.name"
         class="cost__row"
       >
         <div class="cost__label">Dropshipping Fee</div>
         <div class="cost__value">{{ currency(5900) }}</div>
       </row-section>
-      <row-section v-if="checkoutForm.shipment" class="cost__row">
+      <row-section v-if="form.shipment" class="cost__row">
         <div class="cost__label">
-          <span class="cost__label--bold">{{
-            checkoutForm.shipment.name
-          }}</span>
+          <span class="cost__label--bold">{{ form.shipment.name }}</span>
         </div>
         <div class="cost__value">
-          {{ currency(checkoutForm.shipment.value) }}
+          {{ currency(form.shipment.value) }}
         </div>
       </row-section>
       <row-section class="summary__total">
@@ -54,9 +50,7 @@
         {{
           status !== 2
             ? 'Continue Payment'
-            : `Pay with ${
-                checkoutForm.payment ? checkoutForm.payment.name : '?'
-              }`
+            : `Pay with ${form.payment ? form.payment.name : '?'}`
         }}
       </button>
     </div>
@@ -71,7 +65,7 @@ export default {
   components: {
     RowSection,
   },
-  props: ['status', 'isLastStep', 'handleClick', 'checkoutForm', 'allowNext'],
+  props: ['status', 'isLastStep', 'handleClick', 'form', 'allowNext'],
   data() {
     return {
       goodsValue: 500000,
@@ -80,7 +74,7 @@ export default {
   computed: {
     totalPayment() {
       let totalPrice = this.goodsValue;
-      const { dropshipper, shipment } = this.checkoutForm;
+      const { dropshipper, shipment } = this.form;
       if (dropshipper && dropshipper.name) {
         totalPrice += 5900;
       }
@@ -102,6 +96,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../styles/theme.styl';
+@import '../styles/flexbox.styl';
 
 .summary {
   text-align: left;
@@ -159,7 +154,7 @@ export default {
     font-size: 14px;
 
     &__row {
-      justify-content: space-between;
+      justifyContent(space-between);
       margin-bottom: 12px;
     }
 
@@ -178,7 +173,7 @@ export default {
   }
 
   &__total {
-    justify-content: space-between;
+    justifyContent(space-between);
     margin-top: 24px;
     font-weight: bold;
     color: $orangeOrigin;
@@ -187,21 +182,7 @@ export default {
   }
 
   &__btn {
-    background: $orangePrimary;
-    padding: 20px;
-    color: $light;
-    outline: none;
-    width: 100%;
-    border: none;
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &:hover {
-      opacity: 0.9;
-    }
+    payBtn();
   }
 }
 </style>

@@ -97,7 +97,7 @@ export default {
     // shipment
     setShipment(items) {
       this.getShipment = items;
-      const validData = this.getShipment !== '' && this.getShipment !== '';
+      const validData = this.getShipment !== '' && this.paymentVia !== '';
       this.$emit('update', {
         data: {
           shipment: this.getShipment,

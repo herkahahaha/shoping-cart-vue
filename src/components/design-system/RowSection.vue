@@ -11,8 +11,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../../styles/flexbox.styl';
+
 .row {
-  display: flex;
-  flex-wrap: wrap;
+  flexboxWrap(wrap);
 }
 </style>

@@ -2,9 +2,9 @@
   <div class="finished">
     <div class="finished__wrap">
       <heading-section class="finished__heading">Thank you</heading-section>
-      <div class="finished__order-id">ORDER ID: XXKYB</div>
+      <div class="finished__order-id">ORDER ID:</div>
       <p class="finished__info">
-        Your order will be delivered today with GO-SEND
+        Your order will be delivered today with {{ form.shipment.name }}
       </p>
       <button type="button" class="finished__btn" @click="reset">
         <span class="material-icons finished__btn__icon">
@@ -24,17 +24,27 @@ export default {
   components: {
     HeadingSection,
   },
-  props: ['reset'],
+  // props: ['reset'],
+  props: {
+    reset: {
+      type: Function,
+      default: () => {},
+    },
+    form: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  computed: {},
 };
 </script>
 
 <style lang="stylus" scoped>
 @import '../styles/theme.styl';
+@import '../styles/flexbox.styl';
 
 .finished {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flexboxCenter(center);
   min-height: 70vh;
 
   &__wrap {
@@ -59,6 +69,7 @@ export default {
   }
 
   &__btn {
+    flexboxCenter(center);
     font-weight: 500;
     font-size: 14px;
     color: $dark;
@@ -67,8 +78,6 @@ export default {
     outline: none;
     border: none;
     background: none;
-    display: flex;
-    align-items: center;
     cursor: pointer;
     transition: all 0.2s;
 

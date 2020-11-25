@@ -8,7 +8,6 @@
           input__section__success: !invalid && touched,
         },
       ]"
-      :type="type"
       :name="name"
       :placeholder="label"
       :maxlength="maxLength"
@@ -29,16 +28,36 @@
 <script>
 export default {
   name: 'TextareaSection',
-  props: [
-    'type',
-    'name',
-    'label',
-    'value',
-    'invalid',
-    'touched',
-    'maxLength',
-    'minLength',
-  ],
+  props: {
+    name: {
+      type: String,
+      default: 'Name',
+    },
+    label: {
+      type: String,
+      default: 'Label',
+    },
+    value: {
+      type: String,
+      default: '',
+    },
+    invalid: {
+      type: Boolean,
+      default: false,
+    },
+    touched: {
+      type: Boolean,
+      default: false,
+    },
+    maxLength: {
+      type: [String, Number],
+      default: '',
+    },
+    minLength: {
+      type: [String, Number],
+      default: '',
+    },
+  },
   computed: {
     inputValue: {
       get() {

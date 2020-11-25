@@ -12,6 +12,7 @@
             <component
               :is="nextSteps"
               :reset="resetState"
+              :form="form"
               ref="nextSteps"
               @update="fetchData"
             />
@@ -22,8 +23,8 @@
           class="section__summary"
           :isLastStep="lastStep"
           :handleClick="toTheNext"
-          :checkoutForm="form"
-          :allowNext="goNext"
+          :form="form"
+          :allowNext="!!goNext"
           :status="currentState"
         />
       </row-section>
@@ -33,9 +34,9 @@
 
 <script>
 import CardSection from './components/CardSection.vue';
-import DeliveryDetail from './components/DeliveryDetail.vue';
-import Finished from './components/Finished.vue';
-import Payment from './components/Payment.vue';
+import FormDeliveryDetail from './components/DeliveryDetail.vue';
+import FormFinished from './components/Finished.vue';
+import FormPayment from './components/Payment.vue';
 import TotalSumary from './components/TotalSumary.vue';
 import BaseLayout from './components/design-system/BaseLayout.vue';
 import RowSection from './components/design-system/RowSection.vue';
@@ -49,12 +50,20 @@ export default {
     RowSection,
     ProgressBar,
     TotalSumary,
+    FormDeliveryDetail,
+    FormFinished,
+    FormPayment,
   },
   data() {
     return {
       currentState: 1,
       goNext: false,
-      chapterStep: [DeliveryDetail, Payment, Finished],
+      // chapterStep: [DeliveryDetail, Payment, Finished],
+      chapterStep: [
+        { id: 1, text: 'DeliveryDetail' },
+        { id: 2, text: 'Payment' },
+        { id: 3, text: 'Finished' },
+      ],
       form: {
         email: '',
         phone: null,
@@ -84,7 +93,7 @@ export default {
   },
   computed: {
     nextSteps() {
-      return this.chapterStep[this.currentState - 1];
+      return `Form${this.chapterStep[this.currentState - 1].text}`;
     },
     lastStep() {
       return this.currentState === 3;
@@ -92,10 +101,12 @@ export default {
   },
   methods: {
     toTheNext() {
+      // eslint-disable-next-line no-unused-expressions
       this.currentState += 1;
-      this.goNext = !this.$refs.nextSteps.$v.$invalid;
+      this.goNext = !this.$refs.nextSteps.$invalid;
     },
     toTheBack() {
+      // eslint-disable-next-line no-plusplus
       this.currentState -= 1;
       this.goNext = !this.goNext;
     },
